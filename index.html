@@ -1410,11 +1410,17 @@ function submitBooking() {
   saveReservation(JSON.parse(JSON.stringify(booking)));
 
   Promise.all([
-    sendEmailClient(booking).catch(function () {}),
-    sendEmailStaff(booking).catch(function () {}),
-    sendWebhook(booking).catch(function () {})
+sendEmailClient(booking).catch(function (err) {
+    console.error('CLIENTE', err);
+}),
+sendEmailStaff(booking).catch(function (err) {
+    console.error('STAFF', err);
+}),
+sendWebhook(booking).catch(function (err) {
+    console.error('WEBHOOK', err);
+})
   ]).finally(function () {
-    renderConfirmation();
+    renderConfirmation();s
     goToStep(TOTAL + 2);
   });
 }
