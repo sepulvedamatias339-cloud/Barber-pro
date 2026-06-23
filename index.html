@@ -1419,8 +1419,8 @@ sendEmailStaff(booking).catch(function (err) {
 sendWebhook(booking).catch(function (err) {
     console.error('WEBHOOK', err);
 })
-  ]).finally(function () {
-    renderConfirmation();s
+]).finally(function () {
+    renderConfirmation();
     goToStep(TOTAL + 2);
   });
 }
